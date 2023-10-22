@@ -30,11 +30,13 @@ def performance_test(iters: int = 1000):
     dt_arr = np.zeros(iters)
     responses = np.zeros(iters)
 
-    # R = TypeVar("R")
-    # P = ParamSpec("P")
+    R = TypeVar("R")
+    P = ParamSpec("P")
 
     # TODO: now assumes that the return type is an integer
-    def time_test_decorator(func: Callable) -> Callable:
+    def time_test_decorator(
+        func: Callable[P, R]
+    ) -> Callable[P, tuple[R, PerformanceMetrics]]:
         # wrapper gets called when you call the function you are applying the decorator to
         # @functools.wraps(func)
         def wrapper():
@@ -56,12 +58,13 @@ def performance_test(iters: int = 1000):
 
 
 @performance_test(1000)
-def test() -> int:
+def test():
     """test docstring"""
-    return 999
+    return np.random.random()
 
 
 res, m = test()
 
+
 print(res)
-metrics.summary()
+m.summary()
