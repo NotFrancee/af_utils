@@ -1,5 +1,4 @@
 import time
-import functools
 from typing import Callable, TypeVar, ParamSpec
 import numpy as np
 
@@ -19,6 +18,7 @@ class PerformanceMetrics:
         print(f"Stdev: {dt_arr.std()}")
 
 
+# TODO: add parameters to tweak
 def performance_test(iters: int = 1000):
     """Decorator to get the time performance of a function. Repeats the function `iters` times
     and then averages the results.
@@ -38,7 +38,7 @@ def performance_test(iters: int = 1000):
         func: Callable[P, R]
     ) -> Callable[P, tuple[R, PerformanceMetrics]]:
         # wrapper gets called when you call the function you are applying the decorator to
-        # @functools.wraps(func)
+
         def wrapper():
             for i in range(iters):
                 t0 = time.time()
@@ -46,6 +46,15 @@ def performance_test(iters: int = 1000):
                 t1 = time.time()
 
                 dt_arr[i] = t1 - t0
+
+                match response:
+                    case int() | float():
+                        responses[i] = response
+                    case _:
+                        raise Exception(
+                            "This type is not supported yet. The currently supported types are ints and floats"
+                        )
+
                 responses[i] = response
 
             metrics = PerformanceMetrics(dt_arr)
@@ -60,7 +69,7 @@ def performance_test(iters: int = 1000):
 @performance_test(1000)
 def test():
     """test docstring"""
-    return np.random.random()
+    return np.random.rand()
 
 
 res, m = test()
