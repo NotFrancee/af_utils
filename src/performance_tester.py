@@ -69,11 +69,8 @@ def performance_test(iters: int = 1000):
 @performance_test(1000)
 def test():
     """test docstring"""
-    return np.random.rand()
+    return (np.random.rand(100000) * 5).sum()
 
 
-res, m = test()
-
-
-print(res)
-m.summary()
+# res, m = test()
+# m.summary()
