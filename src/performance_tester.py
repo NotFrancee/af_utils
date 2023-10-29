@@ -16,8 +16,24 @@ class PerformanceMetrics:
             dt_arr *= 1000
 
         self.dt_arr = dt_arr
+        self.time_unit = time_unit
+
+        self.mean = dt_arr.mean()
+        self.stdev = dt_arr.std()
+
+        self.min_time = dt_arr.min()
+        self.max_time = dt_arr.max()
+        self.quantiles = np.quantile(dt_arr, [0.1, 0.9])
 
     def summary(self):
+        """Prints the performance summary"""
+
+        print(f"PERFORMANCE SUMMARY ({self.time_unit})")
+        print(f"Mean of running times: {self.mean}")
+        print(f"Stdev: {self.stdev}")
+        print(f"Min - Max Time: {self.min_time} - {self.max_time}")
+        print(f"Quantiles (10th - 90th): {self.quantiles}")
+
 
 def performance_test(iters: int = 1000, time_unit: TimeUnit=None):
     """Decorator to get the time performance of a function. Repeats the function `iters` times
