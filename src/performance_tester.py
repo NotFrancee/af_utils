@@ -7,7 +7,7 @@ import numpy as np
 type TimeUnit = Literal['millis', 's']
 
 class PerformanceMetrics:
-    """TODO DOCSTRING"""
+    """Class to process time data into performance metrics and display them to the user"""
 
     def __init__(
         self, dt_arr: np.ndarray[float, float], time_unit: TimeUnit = None
@@ -18,14 +18,8 @@ class PerformanceMetrics:
         self.dt_arr = dt_arr
 
     def summary(self):
-        """TODO DOCSTRING"""
-        dt_arr = self.dt_arr
-        print(f"Mean of running times: {dt_arr.mean()}")
-        print(f"Stdev: {dt_arr.std()}")
 
-
-# TODO: add parameters to tweak
-def performance_test(iters: int = 1000):
+def performance_test(iters: int = 1000, time_unit: TimeUnit=None):
     """Decorator to get the time performance of a function. Repeats the function `iters` times
     and then averages the results.
 
@@ -44,7 +38,6 @@ def performance_test(iters: int = 1000):
     def time_test_decorator(
         func: Callable[P, R]
     ) -> Callable[P, tuple[R, PerformanceMetrics]]:
-        # wrapper gets called when you call the function you are applying the decorator to
 
         def wrapper():
             for i in range(iters):
