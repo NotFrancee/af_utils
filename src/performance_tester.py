@@ -1,14 +1,20 @@
 import time
-from typing import Callable, TypeVar, ParamSpec
+from typing import Callable, TypeVar, ParamSpec, Literal
 import numpy as np
 
-# match func.__annotations__["return"]:
+# TODO implement memory usage
 
+type TimeUnit = Literal['millis', 's']
 
 class PerformanceMetrics:
     """TODO DOCSTRING"""
 
-    def __init__(self, dt_arr) -> None:
+    def __init__(
+        self, dt_arr: np.ndarray[float, float], time_unit: TimeUnit = None
+    ) -> None:
+        if time_unit == "millis":
+            dt_arr *= 1000
+
         self.dt_arr = dt_arr
 
     def summary(self):
@@ -25,6 +31,7 @@ def performance_test(iters: int = 1000):
 
     Args:
         iters (int, optional): Number of iterations. Defaults to 1000.
+        time_unit (TimeUnit, optional): time unit in which to calculate the metrics. Choices: millis
     """
 
     dt_arr = np.zeros(iters)
@@ -57,8 +64,7 @@ def performance_test(iters: int = 1000):
 
                 responses[i] = response
 
-            metrics = PerformanceMetrics(dt_arr)
-
+            metrics = PerformanceMetrics(dt_arr, time_unit)
             return responses, metrics
 
         return wrapper
@@ -66,7 +72,7 @@ def performance_test(iters: int = 1000):
     return time_test_decorator
 
 
-@performance_test(1000)
+@performance_test(1000, "millis")
 def test():
     """test docstring"""
     return (np.random.rand(100000) * 5).sum()
