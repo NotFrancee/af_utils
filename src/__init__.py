@@ -1,1 +1,2 @@
 from performance_tester import performance_test
+from bsicplotter import BSICPlotter
