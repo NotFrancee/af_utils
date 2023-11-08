@@ -1,3 +1,5 @@
+"""Summary for the performance_tester module. This module contains a decorator to test the performance of a function. The decorator runs the function for a set number of times (given by iters), then collects the results in a PerformanceMetrics class which is returned to the user."""
+
 import time
 from typing import Callable, TypeVar, ParamSpec, Literal
 import numpy as np
@@ -5,10 +7,13 @@ import numpy.typing as npt
 
 # TODO implement memory usage
 
-type TimeUnit = Literal['millis', 's']
+
+"""Type for Time Unit. Can be either "millis", "ms" or "s" """
+type TimeUnit = Literal["millis", "ms", "s"]
+
 
 class PerformanceMetrics:
-    """Class to process time data into performance metrics and display them to the user"""
+    """Class to store and display the performance metrics of a function. The metrics calculated are: mean, stdev, min, max, quantiles (10th and 90th)"""
 
     def __init__(
         self, dt_arr: npt.NDArray[np.float_], time_unit: TimeUnit = "s"
@@ -44,13 +49,31 @@ class PerformanceMetrics:
         print(text)
 
 
-def performance_test(iters: int = 1000, time_unit: TimeUnit=None):
-    """Decorator to get the time performance of a function. Repeats the function `iters` times
-    and then averages the results.
+def performance_test(iters: int = 1000, time_unit: TimeUnit = "ms"):
+    """
+    Performance Test Decorator. Put before functions to test their performance.
+    The decorator runs the function for a set number of times (given by iters),
+    then collects the results in a PerformanceMetrics class which is returned to the user.
 
-    Args:
-        iters (int, optional): Number of iterations. Defaults to 1000.
-        time_unit (TimeUnit, optional): time unit in which to calculate the metrics. Choices: millis
+    How to use: you have to actually call this function, because it returns the actual decorator.
+
+
+    Parameters
+    ----------
+    iters : int, optional
+        Number of iterations, by default 1000
+    time_unit : TimeUnit, optional
+        Time unit to use in the ``PerformanceMetrics`` instance, by default "ms"
+
+    Returns
+    -------
+    decorator
+        The decorator that will then be applied to the function
+
+    Raises
+    ------
+    Exception
+        If the return type is not supported (as of now, only ``int`` and ``float`` are supported)
     """
 
     dt_arr = np.zeros(iters)
