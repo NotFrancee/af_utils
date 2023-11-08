@@ -1,10 +1,10 @@
+import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
-from cycler import cycler
-import pandas as pd
-import numpy as np
 import matplotlib.dates as mdates
+from cycler import cycler
 from typing import Literal
 
 
