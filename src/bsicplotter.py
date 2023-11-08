@@ -5,14 +5,14 @@ from cycler import cycler
 import pandas as pd
 import numpy as np
 import matplotlib.dates as mdates
-from typing import TypedDict, Optional, Literal
+from typing import Literal
 
 
-class MonthLocatorArgs(TypedDict):
-    bymonth: Optional[int]
-    bymonthday: Optional[int]  # defaults to 1
-    interval: int  # defaults to 1
-    tz: any
+# class MonthLocatorArgs(TypedDict):
+#     bymonth: Optional[int]
+#     bymonthday: Optional[int]  # defaults to 1
+#     interval: int  # defaults to 1
+#     tz: any
 
 
 class BSICPlotter:
