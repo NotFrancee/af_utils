@@ -1,4 +1,6 @@
-"""The bsicplotter module provides a utility class to plot in BSIC style, along with other function to help style matplotlib graphs."""
+"""The bsicplotter module provides a utility class to plot in BSIC style, along with other function to help style matplotlib graphs.
+
+"""
 
 import numpy as np
 import pandas as pd
@@ -18,7 +20,15 @@ from typing import Literal
 
 
 class BSICPlotter:
-    """BSICPlotter is a class that provides a consistent style for graphs and plots."""
+    """BSICPlotter is a class that provides a consistent style for graphs and plots.
+
+    Attributes
+    ----------
+    title_style : dict
+        The Default title style
+    color_cycle: cycler
+        The default color cycler
+    """
 
     title_style = {
         "fontname": "Gill Sans MT",
@@ -41,9 +51,8 @@ class BSICPlotter:
     def _check_figsize(
         self, width: float, height: float | None, aspect_ratio: float | None
     ):
-        """
+        r"""
         Checks the validity of the figsize parameters and returns the width and height to use.
-
 
         Parameters
         ----------
@@ -54,7 +63,6 @@ class BSICPlotter:
         aspect_ratio : float | None
             Aspect Ratio of the figure, as a float. E.g. 16/9 for 16:9 aspect ratio.
         """
-
         if width > 7.32:
             print("--- Warning ---")
             print(
@@ -83,7 +91,7 @@ If you set the width > 7.32, the figure will be resized in word and the font siz
         Parameters
         ----------
         df : pd.DataFrame
-            The DataFrame to preprocess
+            The DataFrame to preprocess.
         """
 
         df.columns = [col.lower() for col in df.columns]
@@ -161,15 +169,14 @@ If you set the width > 7.32, the figure will be resized in word and the font siz
     # actually you can use this and reapply styles, could be more intuitive to do
     def apply_BSIC_style(self, fig: Figure, ax: Axes):
         """
-        Applies the BSIC Style to the plot. Sets the title style to the correct format.
-
+        Apply the BSIC Style to the plot. Sets the title style to the correct format.
 
         Parameters
         ----------
-        fig : Figure
-            Matplotlib Figure instance
-        ax : Axes
-            Matplotlib Axes instance
+        fig : ``matplotlib.figure.Figure``
+            Matplotlib Figure instance.
+        ax : ``matplotlib.axes.Axes``
+            Matplotlib Axes instance.
         """
         title = ax.get_title()
 
@@ -179,12 +186,12 @@ If you set the width > 7.32, the figure will be resized in word and the font siz
         self, ax: Axes, time_unit: Literal["Y", "M", "D"], freq: int, fmt: str | None
     ):
         """
-        Formats the x-axis of a timeseries plot.
+        Format the x-axis of a timeseries plot.
 
         Parameters
         ----------
         ax : Axes
-            Matplotlib Axes instance
+            Matplotlib Axes instance.
         time_unit : Literal['Y', 'M', 'D']
             Time unit to use. Can be "Y" for years, "M" for months, or "D" for days.
         freq : int
