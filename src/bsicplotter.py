@@ -16,6 +16,8 @@ from typing import Literal
 
 
 class BSICPlotter:
+    """BSICPlotter is a class that provides a consistent style for graphs and plots."""
+
     title_style = {
         "fontname": "Gill Sans MT",
         "color": "black",
@@ -28,13 +30,25 @@ class BSICPlotter:
     general_font_size = 10
     general_font_family = "Garamond"
 
-    def __init__(self) -> None:
-        # plt.rcParams["font.family"] = "serif"
+    def __init__(self) -> None:  # TODO let the user override the default styles
         plt.rcParams["font.sans-serif"] = self.general_font_family
         plt.rcParams["font.size"] = self.general_font_size
         plt.rcParams["axes.prop_cycle"] = self.color_cycle
 
-    def _check_figsize(self, width: float, height: float, aspect_ratio: float):
+    def _check_figsize(
+        self, width: float, height: float | None, aspect_ratio: float | None
+    ):
+        """
+        Checks the validity of the figsize parameters and returns the width and height to use.
+
+        :param width: width
+        :type width: float
+        :param height: height
+        :type height: float
+        :param aspect_ratio: aspect ratio
+        :type aspect_ratio: float
+        """
+
         if width > 7.32:
             print("--- Warning ---")
             print(
@@ -57,6 +71,13 @@ If you set the width > 7.32, the figure will be resized in word and the font siz
         return width, height
 
     def preprocess_dataframe(self, df: pd.DataFrame):
+        """
+        Preprocesses the dataframe by (i) converting all column names to lowercase and (ii) setting the index to date if it exists, and converting it to datetime.
+
+        :param df: the dataframe to preprocess
+        :type df: pd.DataFrame
+        """
+
         df.columns = [col.lower() for col in df.columns]
 
         if "date" in df.columns:
@@ -68,20 +89,19 @@ If you set the width > 7.32, the figure will be resized in word and the font siz
         self,
         data: pd.DataFrame,
         width: float = 7.32,
-        height: float = None,
-        aspect_ratio: float = None,
-        title: str = None,
-        y_label: str = None,
-        x_label: str = None,
+        height: float | None = None,
+        aspect_ratio: float | None = None,
+        title: str = "",
+        y_label: str = "",
+        x_label: str = "",
         constant_time_distance: bool = False,
         zero_line: bool = False,
-        timeseries_ticks_unit: Literal["Y", "M", "D"] = None,
+        timeseries_ticks_unit: Literal["Y", "M", "D"] | None = None,
         timeseries_ticks_frequency: int = 1,
-        timeseries_date_format: str = None,
+        timeseries_date_format: str | None = None,
         legend: bool = False,
-        legend_labels: list[str] = None,
-        save: bool = False,
-        filename: str = None,
+        legend_labels: list[str] | None = None,
+        filename: str | None = None,
         *args,
         **kwargs,
     ):
@@ -124,18 +144,17 @@ If you set the width > 7.32, the figure will be resized in word and the font siz
 
         lines = ax.plot(data, *args, **kwargs)
 
-        if not save:
-            fig.tight_layout()  # changes font sizes so should not use when saving, only when displaying
-
         if legend:
             if not legend_labels:
                 print(
                     "You did not specify legend labels. Using column names as legend labels"
                 )
-                legend_labels = data.columns
+                legend_labels = list(data.columns)
             ax.legend(lines, legend_labels)
 
-        if save:
+        if filename is None:
+            fig.tight_layout()  # changes font sizes so should not use when saving, only when displaying
+        else:
             # using bbox_inches = tight changes the size of the figure exported
             fig.savefig(filename, dpi=1200, bbox_inches="tight")
             # fig.savefig(
