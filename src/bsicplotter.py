@@ -163,3 +163,17 @@ If you set the width > 7.32, the figure will be resized in word and the font siz
             # )
 
         return fig, ax
+
+    # actually you can use this and reapply styles, could be more intuitive to do
+    def apply_BSIC_style(self, fig: Figure, ax: Axes):
+        """
+        Applies the BSIC Style to the plot. Sets the title style to the correct format.
+
+        :param fig: matplotlib Figure instance
+        :type fig: Figure
+        :param ax: matplotlib Axes instance
+        :type ax: Axes
+        """
+        title = ax.get_title()
+
+        ax.set_title(title, **self.title_style)
