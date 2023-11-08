@@ -1,0 +1,6 @@
+mpl\_bsic.BSIC\_FONT\_FAMILY
+============================
+
+.. currentmodule:: mpl_bsic
+
+.. autodata:: BSIC_FONT_FAMILY

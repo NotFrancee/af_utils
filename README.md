@@ -2,9 +2,7 @@
 
 ## Read Docs
 
-1. Clone the repository on your system
-2. `cd docs`
-3. `.\make html`
-4. Open build/html/index.html using Chrome
+1. Download the docs_html folder on your system
+2. Open docs_html/html/index.html using Chrome
 
 Hosted docs page WIP!

@@ -1,0 +1,6 @@
+performance\_tester.performance\_test
+=====================================
+
+.. currentmodule:: performance_tester
+
+.. autofunction:: performance_test

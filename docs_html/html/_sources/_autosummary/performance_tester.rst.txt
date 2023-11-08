@@ -1,0 +1,38 @@
+﻿performance\_tester
+===================
+
+.. automodule:: performance_tester
+  
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:                                          
+   
+      performance_test
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:                                          
+      :template: custom-class-template.rst               
+   
+      PerformanceMetrics
+   
+   
+
+   
+   
+   
+
+
+

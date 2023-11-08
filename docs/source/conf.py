@@ -31,6 +31,7 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx.ext.imgmath",
     "nbsphinx",
+    "sphinx_simplepdf",
 ]
 
 templates_path = ["_templates"]
