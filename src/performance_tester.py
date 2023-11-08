@@ -110,13 +110,3 @@ def performance_test(iters: int = 1000, time_unit: TimeUnit = "ms"):
         return wrapper
 
     return time_test_decorator
-
-
-@performance_test(1000, "millis")
-def test():
-    """test docstring"""
-    return (np.random.rand(100000) * 5).sum()
-
-
-# res, m = test()
-# m.summary()
