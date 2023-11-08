@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.axes import Axes
+from matplotlib.figure import Figure
+from cycler import cycler
 import pandas as pd
 import numpy as np
 import matplotlib.dates as mdates
@@ -21,9 +23,7 @@ class BSICPlotter:
         "fontstyle": "italic",
         "fontsize": 12,
     }
-    color_cycle = plt.cycler(
-        color=["#38329A", "#8EC6FF", "#601E66", "#2F2984", "#0E0B54"]
-    )
+    color_cycle = cycler(color=["#38329A", "#8EC6FF", "#601E66", "#2F2984", "#0E0B54"])
 
     general_font_size = 10
     general_font_family = "Garamond"
@@ -47,10 +47,11 @@ If you set the width > 7.32, the figure will be resized in word and the font siz
             print(
                 "you did not specify width. Defaulting to 7.32 inches (width of a word document))"
             )
-        if (height is None) and (aspect_ratio is None):
-            raise Exception("You must specify either height or aspect_ratio")
 
         if height is None:
+            if aspect_ratio is None:
+                raise Exception("You must specify either height or aspect_ratio")
+
             height = width * aspect_ratio
 
         return width, height
