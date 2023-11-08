@@ -3,3 +3,4 @@ dist
 **/__pycache__
 **/build
 src/trade_graph.py
+docs/source/_autosummary/*
