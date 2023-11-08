@@ -6,13 +6,15 @@
 Docs for af_utils
 ====================================
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Contents:
+.. autosummary::
+   :toctree: _autosummary
+   :template: custom-module-template.rst
+   :recursive:
 
-   BSIC Plotter <bsicplotter>
-   Performance Tester <performancetest>
-   notebooks/exampleusage.ipynb
+   bsicplotter
+   performance_tester
+   mpl_bsic
+   
 
 Indices and tables
 ==================
