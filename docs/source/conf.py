@@ -20,9 +20,7 @@ import sys
 print(os.path.abspath("../../src"))
 sys.path.insert(0, os.path.abspath("../../src"))
 
-extensions = [
-    "sphinx.ext.autodoc",
-]
+extensions = ["sphinx.ext.autodoc", "nbsphinx"]
 
 templates_path = ["_templates"]
 exclude_patterns = []

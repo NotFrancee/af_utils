@@ -12,6 +12,7 @@ Docs for af_utils
 
    BSIC Plotter <bsicplotter>
    Performance Tester <performancetest>
+   notebooks/exampleusage.ipynb
 
 Indices and tables
 ==================
