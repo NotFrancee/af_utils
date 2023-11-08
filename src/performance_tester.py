@@ -27,13 +27,21 @@ class PerformanceMetrics:
         self.quantiles = np.quantile(dt_arr, [0.1, 0.9])
 
     def summary(self):
-        """Prints the performance summary"""
+        """
+        Prints the summary of the performances
+        """
 
-        print(f"PERFORMANCE SUMMARY ({self.time_unit})")
-        print(f"Mean of running times: {self.mean}")
-        print(f"Stdev: {self.stdev}")
-        print(f"Min - Max Time: {self.min_time} - {self.max_time}")
-        print(f"Quantiles (10th - 90th): {self.quantiles}")
+        text = "\n".join(
+            [
+                f"Performance Summary ({self.time_unit})",
+                f"Mean of running times: {self.mean}",
+                f"Stdev: {self.stdev}",
+                f"Min - Max Time: {self.min_time} - {self.max_time}",
+                f"Quantiles (10th - 90th): {self.quantiles}",
+            ]
+        )
+
+        print(text)
 
 
 def performance_test(iters: int = 1000, time_unit: TimeUnit=None):
