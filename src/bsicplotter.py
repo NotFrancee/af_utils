@@ -121,26 +121,12 @@ If you set the width > 7.32, the figure will be resized in word and the font siz
             data = data.copy()
             data.index = data.index.astype(str)
         if timeseries_ticks_unit:
-            match timeseries_ticks_unit:
-                case "Y":
-                    ax.xaxis.set_major_locator(
-                        mdates.YearLocator(timeseries_ticks_frequency)
-                    )
-                case "M":
-                    ax.xaxis.set_major_locator(
-                        mdates.MonthLocator(interval=timeseries_ticks_frequency)
-                    )
-                case "D":
-                    ax.xaxis.set_major_locator(
-                        mdates.DayLocator(timeseries_ticks_frequency)
-                    )
-                case _:
-                    raise Exception("this time frequency is not supported.")
-
-            date_format = timeseries_date_format if timeseries_date_format else "%b-%y"
-            ax.xaxis.set_major_formatter(mdates.DateFormatter(date_format))
-            # fig.autofmt_xdate(rotation=45, ha="center")
-            ax.tick_params(axis="x", rotation=45)
+            self.format_timeseries_axis(
+                ax,
+                timeseries_ticks_unit,
+                timeseries_ticks_frequency,
+                timeseries_date_format,
+            )
 
         lines = ax.plot(data, *args, **kwargs)
 
@@ -177,3 +163,34 @@ If you set the width > 7.32, the figure will be resized in word and the font siz
         title = ax.get_title()
 
         ax.set_title(title, **self.title_style)
+
+    def format_timeseries_axis(
+        self, ax: Axes, time_unit: Literal["Y", "M", "D"], freq: int, fmt: str | None
+    ):
+        """
+        Formats the x-axis of a timeseries plot.
+
+        :param ax: matplotlib axes instance
+        :type ax: Axes
+        :param time_unit: Time unit to use. Can be "Y" for years, "M" for months, or "D" for days.
+        :type time_unit: Literal["Y", "M", "D"]
+        :param freq: Time Frequency. For example, if time_unit is "M" and freq is 3, then the x-axis will have a tick every 3 months.
+        :type freq: int
+        :param fmt: Date Format which will be fed to matplotlib.dates.DateFormatter. If None, the default format will be used (`%b-%y`).
+        :type fmt: str | None
+        :raises Exception: If the time frequency is not supported.
+        """
+
+        match time_unit:
+            case "Y":
+                ax.xaxis.set_major_locator(mdates.YearLocator(freq))
+            case "M":
+                ax.xaxis.set_major_locator(mdates.MonthLocator(interval=freq))
+            case "D":
+                ax.xaxis.set_major_locator(mdates.DayLocator(freq))
+            case _:
+                raise Exception("this time frequency is not supported.")
+
+        date_format = fmt if fmt else "%b-%y"
+        ax.xaxis.set_major_formatter(mdates.DateFormatter(date_format))
+        ax.tick_params(axis="x", rotation=45)
