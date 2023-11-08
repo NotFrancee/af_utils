@@ -1,3 +1,5 @@
+"""The bsicplotter module provides a utility class to plot in BSIC style, along with other function to help style matplotlib graphs."""
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -25,6 +27,7 @@ class BSICPlotter:
         "fontstyle": "italic",
         "fontsize": 12,
     }
+
     color_cycle = cycler(color=["#38329A", "#8EC6FF", "#601E66", "#2F2984", "#0E0B54"])
 
     general_font_size = 10
@@ -41,12 +44,15 @@ class BSICPlotter:
         """
         Checks the validity of the figsize parameters and returns the width and height to use.
 
-        :param width: width
-        :type width: float
-        :param height: height
-        :type height: float
-        :param aspect_ratio: aspect ratio
-        :type aspect_ratio: float
+
+        Parameters
+        ----------
+        width : float
+            Width of the Figure, in inches
+        height : float | None
+            Height of the Figure, in inches
+        aspect_ratio : float | None
+            Aspect Ratio of the figure, as a float. E.g. 16/9 for 16:9 aspect ratio.
         """
 
         if width > 7.32:
@@ -72,10 +78,12 @@ If you set the width > 7.32, the figure will be resized in word and the font siz
 
     def preprocess_dataframe(self, df: pd.DataFrame):
         """
-        Preprocesses the dataframe by (i) converting all column names to lowercase and (ii) setting the index to date if it exists, and converting it to datetime.
+        Function to Preprocess the DataFrame before plotting. It sets all the columns to lowercase and sets the index as the dates (converting to datetime).
 
-        :param df: the dataframe to preprocess
-        :type df: pd.DataFrame
+        Parameters
+        ----------
+        df : pd.DataFrame
+            The DataFrame to preprocess
         """
 
         df.columns = [col.lower() for col in df.columns]
@@ -155,10 +163,13 @@ If you set the width > 7.32, the figure will be resized in word and the font siz
         """
         Applies the BSIC Style to the plot. Sets the title style to the correct format.
 
-        :param fig: matplotlib Figure instance
-        :type fig: Figure
-        :param ax: matplotlib Axes instance
-        :type ax: Axes
+
+        Parameters
+        ----------
+        fig : Figure
+            Matplotlib Figure instance
+        ax : Axes
+            Matplotlib Axes instance
         """
         title = ax.get_title()
 
@@ -170,15 +181,21 @@ If you set the width > 7.32, the figure will be resized in word and the font siz
         """
         Formats the x-axis of a timeseries plot.
 
-        :param ax: matplotlib axes instance
-        :type ax: Axes
-        :param time_unit: Time unit to use. Can be "Y" for years, "M" for months, or "D" for days.
-        :type time_unit: Literal["Y", "M", "D"]
-        :param freq: Time Frequency. For example, if time_unit is "M" and freq is 3, then the x-axis will have a tick every 3 months.
-        :type freq: int
-        :param fmt: Date Format which will be fed to matplotlib.dates.DateFormatter. If None, the default format will be used (`%b-%y`).
-        :type fmt: str | None
-        :raises Exception: If the time frequency is not supported.
+        Parameters
+        ----------
+        ax : Axes
+            Matplotlib Axes instance
+        time_unit : Literal['Y', 'M', 'D']
+            Time unit to use. Can be "Y" for years, "M" for months, or "D" for days.
+        freq : int
+            Time Frequency. For example, if time_unit is "M" and freq is 3, then the x-axis will have a tick every 3 months.
+        fmt : str | None
+            Date Format which will be fed to matplotlib.dates.DateFormatter. If None, the default format will be used (`%b-%y`).
+
+        Raises
+        ------
+        Exception
+            If the time frequency is not supported.
         """
 
         match time_unit:
