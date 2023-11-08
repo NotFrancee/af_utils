@@ -1,6 +1,7 @@
 import time
 from typing import Callable, TypeVar, ParamSpec, Literal
 import numpy as np
+import numpy.typing as npt
 
 # TODO implement memory usage
 
@@ -10,9 +11,9 @@ class PerformanceMetrics:
     """Class to process time data into performance metrics and display them to the user"""
 
     def __init__(
-        self, dt_arr: np.ndarray[float, float], time_unit: TimeUnit = None
+        self, dt_arr: npt.NDArray[np.float_], time_unit: TimeUnit = "s"
     ) -> None:
-        if time_unit == "millis":
+        if time_unit in ["millis", "ms"]:
             dt_arr *= 1000
 
         self.dt_arr = dt_arr
@@ -54,11 +55,10 @@ def performance_test(iters: int = 1000, time_unit: TimeUnit=None):
     def time_test_decorator(
         func: Callable[P, R]
     ) -> Callable[P, tuple[R, PerformanceMetrics]]:
-
-        def wrapper():
+        def wrapper(*args: P.args, **kwargs: P.kwargs):
             for i in range(iters):
                 t0 = time.time()
-                response = func()
+                response = func(*args, **kwargs)
                 t1 = time.time()
 
                 dt_arr[i] = t1 - t0
@@ -74,7 +74,7 @@ def performance_test(iters: int = 1000, time_unit: TimeUnit=None):
                 responses[i] = response
 
             metrics = PerformanceMetrics(dt_arr, time_unit)
-            return responses, metrics
+            return responses[0], metrics
 
         return wrapper
 
