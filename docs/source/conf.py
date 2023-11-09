@@ -44,7 +44,7 @@ autosummary_generate = True
 numpydoc_xref_param_type = True
 numpydoc_xref_ignore = {"optional", "type_without_description", "BadException"}
 numpydoc_class_members_toctree = False
-numpydoc_validation_checks = {"all", "GL01", "SA04", "RT03"}
+numpydoc_validation_checks = {"all", "GL01", "GL02", "SA04", "RT03"}
 pygments_style = "sphinx"
 
 # -- Options for matplotlib plots ----------------------------------------------------
