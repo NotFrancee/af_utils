@@ -1,4 +1,29 @@
 """``mpl_bsic`` helps you style matplotlib plots in BSIC style.
+
+Guidelines
+------------------
+.. rubric:: Plotting Yield Curves
+
+When plotting yield curves, to make the x ticks the same distance regardless of time:
+
+.. code:: python
+
+    data.index = data.index.astype(str)
+
+.. rubric:: Saving the figure
+
+When saving the figure, you should use ``bbox_inches='tight'`` to make sure the figure is not cropped.
+
+.. code:: python
+
+    fig, ax = plt.subplots(1,1)
+
+    ... # plot your data and apply the style
+
+    fig.savefig("your_filename.svg", dpi=1200, bbox_inches="tight")
+
+Module Components
+-----------------
 """
 
 import matplotlib.pyplot as plt
