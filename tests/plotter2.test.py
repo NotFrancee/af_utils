@@ -20,8 +20,6 @@ options = {
     # 'constant_distance': False,
     "width": 8,
     "height": 3,
-    "save": False,
-    "filename": "TEST_2s10s_5.svg",
     "zero_line": False,
     "legend": False,
     "timeseries_ticks_unit": "M",
