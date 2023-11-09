@@ -6,7 +6,7 @@ from matplotlib.figure import Figure
 from matplotlib.axes import Axes
 from cycler import cycler
 
-DFT_TITLE_STYLE = {
+DEFAULT_TITLE_STYLE = {
     "fontname": "Gill Sans MT",
     "color": "black",
     "fontweight": "bold",
@@ -15,10 +15,11 @@ DFT_TITLE_STYLE = {
 }
 """TODO"""
 
-DFT_COLOR_CYCLE = cycler(color=["#38329A", "#8EC6FF", "#601E66", "#2F2984", "#0E0B54"])
-"""Default Color Style"""
-DFT_FONT_SIZE = 10
-"""TODO"""
+DEFAULT_COLOR_CYCLE = cycler(
+    color=["#38329A", "#8EC6FF", "#601E66", "#2F2984", "#0E0B54"]
+)
+
+DEFAULT_FONT_SIZE = 10
 BSIC_FONT_FAMILY = "Garamond"
 """TODO"""
 
