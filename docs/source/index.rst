@@ -11,8 +11,6 @@ Docs for af_utils
    :template: custom-module-template.rst
    :recursive:
 
-   bsicplotter
-   performance_tester
    mpl_bsic
    
 
