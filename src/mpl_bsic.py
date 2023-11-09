@@ -1,5 +1,19 @@
 """``mpl_bsic`` helps you style matplotlib plots in BSIC style.
 
+Setting up
+----------
+
+To make sure the plots are styled correctly, you must make sure that the fonts are installed on your computer and that
+matplotlib can recognize them. For now the process has been tested only on Macos. If it doesn't work on Windows, 
+shoot me a message. 
+
+1) Download the fonts from the `fonts` folder in this repository.
+2) Install the fonts (double click on the font files and click on "Install Font").
+3) Clear your matplotlib cache.
+    a) Go on your pc > users > [your-user] > .matplotlib
+    b) If you cannot see the .matplotlib folder, press ``cmd + shift + .`` to show hidden files.
+    c) Delete the ``fontlist-vXXX.json`` file.
+
 Guidelines
 ------------------
 .. rubric:: Plotting Yield Curves
