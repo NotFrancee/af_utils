@@ -1,6 +1,0 @@
-mpl\_bsic.apply\_BSIC\_style
-============================
-
-.. currentmodule:: mpl_bsic
-
-.. autofunction:: apply_BSIC_style

@@ -1,6 +1,0 @@
-mpl\_bsic.DFT\_COLOR\_CYCLE
-===========================
-
-.. currentmodule:: mpl_bsic
-
-.. autodata:: DFT_COLOR_CYCLE
