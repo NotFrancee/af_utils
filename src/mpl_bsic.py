@@ -117,6 +117,7 @@ def preprocess_dataframe(df: pd.DataFrame):
         df.index = pd.to_datetime(df.index)
 
 
+def apply_BSIC_style(fig: Figure, ax: Axes, title: str | None = None):
     r"""Apply the BSIC Style to an existing matplotlib plot.
 
     Apply the BSIC Style to the plot. First, it sets the font family and size for the overall plot and the color cycle to use.
@@ -174,7 +175,10 @@ def preprocess_dataframe(df: pd.DataFrame):
     plt.rcParams["axes.prop_cycle"] = DEFAULT_COLOR_CYCLE
     ax.set_prop_cycle(DEFAULT_COLOR_CYCLE)
 
-    title = ax.get_title()
+    if title is None:
+        title = ax.get_title()
+        if title == "":
+            print("warning: you did not specify a title")
 
     ax.set_title(title, **DEFAULT_TITLE_STYLE)
 
