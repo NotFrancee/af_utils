@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.axes import Axes
 from cycler import cycler
+import pandas as pd
 
 DEFAULT_TITLE_STYLE = {
     "fontname": "Gill Sans MT",
