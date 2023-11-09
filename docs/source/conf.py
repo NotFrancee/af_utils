@@ -32,6 +32,7 @@ extensions = [
     "sphinx.ext.imgmath",
     "nbsphinx",
     "sphinx_simplepdf",
+    "matplotlib.sphinxext.plot_directive",
 ]
 
 templates_path = ["_templates"]
@@ -46,6 +47,8 @@ numpydoc_class_members_toctree = False
 numpydoc_validation_checks = {"all", "GL01", "SA04", "RT03"}
 pygments_style = "sphinx"
 
+# -- Options for matplotlib plots ----------------------------------------------------
+plot_include_source = True
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
