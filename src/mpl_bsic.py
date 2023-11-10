@@ -27,7 +27,8 @@ When plotting yield curves, to make the x ticks the same distance regardless of 
 
 .. rubric:: Saving the figure
 
-When saving the figure, you should use ``bbox_inches='tight'`` to make sure the figure is not cropped.
+When saving the figure, you should use ``bbox_inches='tight'`` 
+to make sure the figure is not cropped.
 
 .. code:: python
 
@@ -160,7 +161,7 @@ def preprocess_dataframe(df: pd.DataFrame):
         df.index = pd.to_datetime(df.index)
 
 
-def apply_BSIC_style(fig: Figure, ax: Axes, title: str | None = None):
+def apply_bsic_style(fig: Figure, ax: Axes, title: str | None = None):
     r"""Apply the BSIC Style to an existing matplotlib plot.
 
     Apply the BSIC Style to the plot. First, it sets the font family and size for the overall plot and the color cycle to use.
