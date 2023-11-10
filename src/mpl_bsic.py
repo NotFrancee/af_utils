@@ -3,8 +3,9 @@
 Setting up
 ----------
 
-To make sure the plots are styled correctly, you must make sure that the fonts are installed on your computer and that
-matplotlib can recognize them. For now the process has been tested only on Macos. If it doesn't work on Windows, 
+To make sure the plots are styled correctly, you must make sure that the fonts 
+are installed on your computer and that matplotlib can recognize them. 
+For now the process has been tested only on Macos. If it doesn't work on Windows, 
 shoot me a message. 
 
 1) Download the fonts from the `fonts` folder in this repository.
@@ -40,13 +41,13 @@ Module Components
 -----------------
 """
 
+from typing import Literal
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.axes import Axes
+import matplotlib.dates as mdates
 from cycler import cycler
 import pandas as pd
-from typing import Literal
-import matplotlib.dates as mdates
 
 DEFAULT_TITLE_STYLE = {
     "fontname": "Gill Sans MT",
