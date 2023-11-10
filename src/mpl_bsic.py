@@ -138,7 +138,8 @@ This is the examples section. WIP.
 def preprocess_dataframe(df: pd.DataFrame):
     """Handle and preprocess the DataFrame before plotting.
 
-    Handle and preprocess the DataFrame before plotting. It sets all the columns to lowercase and sets the index as the dates (converting to datetime).
+    Handle and preprocess the DataFrame before plotting. 
+    It sets all the columns to lowercase and sets the index as the dates (converting to datetime).
 
     Parameters
     ----------
@@ -164,13 +165,16 @@ def preprocess_dataframe(df: pd.DataFrame):
 def apply_bsic_style(fig: Figure, ax: Axes, title: str | None = None):
     r"""Apply the BSIC Style to an existing matplotlib plot.
 
-    Apply the BSIC Style to the plot. First, it sets the font family and size for the overall plot and the color cycle to use.
+    Apply the BSIC Style to the plot. First, it sets the font family and size 
+    for the overall plot and the color cycle to use.
     Then, if the plot has a title, then it applies the default title style.
 
     Should be called *before* plotting, to make sure the right color cycle gets applied.
 
-    Warning: if you want to specify and set a title to the plot, you can either set it before or give it to the function.
-    Otherwise, the correct style won't be applied. This is forced by matplotlib and must be done to make sure the fuction works.
+    Warning: if you want to specify and set a title to the plot, 
+    you can either set it before or give it to the function.
+    Otherwise, the correct style won't be applied. 
+    This is forced by matplotlib and must be done to make sure the fuction works.
 
     Parameters
     ----------
@@ -197,7 +201,8 @@ def apply_bsic_style(fig: Figure, ax: Axes, title: str | None = None):
         y = np.sin(x)
 
         fig, ax = plt.subplots(1, 1)
-        apply_BSIC_style(fig, ax, 'Sin(x)') # apply right after creating the Figure and Axes instances
+        # apply right after creating the Figure and Axes instances
+        apply_BSIC_style(fig, ax, 'Sin(x)') 
 
         ax.plot(x,y)
 
@@ -262,7 +267,8 @@ def check_figsize(
         print(
             """Width is greater than 7.32 inches. 
 This is the width of a word document available for figures. 
-If you set the width > 7.32, the figure will be resized in word and the font sizes will not be consistent across the article and the graph"""
+If you set the width > 7.32, the figure will be resized in word and 
+the font sizes will not be consistent across the article and the graph"""
         )
 
     if width is None:
@@ -285,7 +291,8 @@ def format_timeseries_axis(
     """Format the x-axis of a timeseries plot.
 
     It sets the major locator and formatter for the x-axis.
-    Note that this function does not take as an input the figure, but just the matplotlib Axes instance.
+    Note that this function does not take as an input the figure, 
+    but just the matplotlib Axes instance.
 
     Parameters
     ----------
@@ -294,9 +301,11 @@ def format_timeseries_axis(
     time_unit : Literal['Y', 'M', 'D']
         Time unit to use. Can be "Y" for years, "M" for months, or "D" for days.
     freq : int
-        Time Frequency. For example, if time_unit is "M" and freq is 3, then the x-axis will have a tick every 3 months.
+        Time Frequency. For example, if time_unit is "M" and freq is 3, 
+        then the x-axis will have a tick every 3 months.
     fmt : str | None
-        Date Format which will be fed to matplotlib.dates.DateFormatter. If None, the default format will be used (`%b-%y`).
+        Date Format which will be fed to matplotlib.dates.DateFormatter. 
+        If None, the default format will be used (`%b-%y`).
 
     Raises
     ------
