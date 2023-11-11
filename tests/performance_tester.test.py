@@ -1,10 +1,5 @@
-import sys
-import os
-import pandas as pd
 import numpy as np
-
-sys.path.append(os.path.dirname(os.path.realpath(__file__)) + "/../src")
-
+import test_setup  # noqa
 from performance_tester import performance_test
 
 
