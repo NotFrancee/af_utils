@@ -1,4 +1,8 @@
 # Configuration file for the Sphinx documentation builder.
+
+import os
+import sys
+
 #
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
@@ -13,9 +17,6 @@ release = "0.0.1"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
-
-import os
-import sys
 
 print(os.path.abspath("../../src"))
 sys.path.insert(0, os.path.abspath("../../src"))
@@ -47,7 +48,7 @@ numpydoc_class_members_toctree = False
 numpydoc_validation_checks = {"all", "GL01", "GL02", "SA04", "RT03"}
 pygments_style = "sphinx"
 
-# -- Options for matplotlib plots ----------------------------------------------------
+# -- Options for matplotlib plots -----------------------------------------
 plot_include_source = True
 
 # -- Options for HTML output -------------------------------------------------
