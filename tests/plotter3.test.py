@@ -1,10 +1,7 @@
 from matplotlib.axes import Axes
 import numpy as np
-import sys
-import os
 import matplotlib.pyplot as plt
-
-sys.path.append(os.path.dirname(os.path.realpath(__file__)) + "/../src")
+import test_setup  # noqa
 from mpl_bsic import apply_bsic_style
 
 

@@ -1,11 +1,6 @@
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
-import sys
-import os
-
-sys.path.append(os.path.dirname(os.path.realpath(__file__)) + "/../src")
+import test_setup  # noqa
 from bsicplotter import BSICPlotter
 
 pltr = BSICPlotter()
@@ -21,7 +16,6 @@ options = {
     "width": 8,
     "height": 3,
     "zero_line": False,
-    "legend": False,
     "timeseries_ticks_unit": "M",
     "timeseries_ticks_frequency": 1,
     "legend": True,
